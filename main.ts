@@ -5,8 +5,53 @@ input.onButtonPressed(Button.A, function () {
         logging_data = true
     }
 })
+input.onButtonPressed(Button.B, function () {
+    soil_moisture = weatherbit.soilMoisture()
+    if (soil_moisture < 16) {
+        basic.showLeds(`
+            . . . . .
+            . . . . .
+            . . . . .
+            . . . . .
+            . . # . .
+            `)
+    } else if (soil_moisture >= 16 && soil_moisture < 300) {
+        basic.showLeds(`
+            . . . . .
+            . . . . .
+            . . . . .
+            # # # # #
+            # # # # #
+            `)
+    } else if (soil_moisture >= 300 && soil_moisture < 400) {
+        basic.showLeds(`
+            . . . . .
+            . . . . .
+            # # # # #
+            # # # # #
+            # # # # #
+            `)
+    } else if (soil_moisture >= 400 && soil_moisture < 700) {
+        basic.showLeds(`
+            . . . . .
+            # # # # #
+            # # # # #
+            # # # # #
+            # # # # #
+            `)
+    } else if (soil_moisture >= 700) {
+        basic.showLeds(`
+            # # # # #
+            # # # # #
+            # # # # #
+            # # # # #
+            # # # # #
+            `)
+    }
+})
 let log_num = 0
 let row = ""
+let soil_moisture = 0
 let logging_data = false
 basic.showIcon(IconNames.Umbrella)
 logging_data = false
