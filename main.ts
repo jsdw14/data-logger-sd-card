@@ -9,8 +9,13 @@ let log_num = 0
 let row = ""
 let logging_data = false
 basic.showIcon(IconNames.Umbrella)
-logging_data = true
+logging_data = false
 weatherbit.startWeatherMonitoring()
+serial.redirect(
+SerialPin.P15,
+SerialPin.P14,
+BaudRate.BaudRate9600
+)
 let header = "time" + "," + "temp(c)" + "," + "humidity" + "," + "pressure" + "," + "altitude"
 serial.writeLine(header)
 loops.everyInterval(1000, function () {
