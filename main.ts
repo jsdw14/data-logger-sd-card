@@ -10,7 +10,7 @@ input.onButtonPressed(Button.B, function () {
     logging_data = false
     logging_soil = true
     soil_moisture = weatherbit.soilMoisture()
-    row = "" + input.runningTime() + "," + weatherbit.temperature() + "," + weatherbit.humidity() + "," + weatherbit.pressure() + "" + weatherbit.altitude() + "," + soil_moisture
+    row = "" + input.runningTime() + "," + weatherbit.temperature() + "," + weatherbit.humidity() + "," + weatherbit.pressure() + "," + soil_moisture
     serial.writeLine(row)
     if (soil_moisture < 16) {
         basic.showLeds(`
@@ -68,11 +68,11 @@ SerialPin.P15,
 SerialPin.P14,
 BaudRate.BaudRate9600
 )
-let header = "time" + "," + "temp(c)" + "," + "humidity" + "," + "pressure" + "," + "altitude" + "," + "soil moisture"
+let header = "time" + "," + "temp(c)" + "," + "humidity" + "," + "pressure" + "," + "soil moisture"
 serial.writeLine(header)
 loops.everyInterval(1000, function () {
     if (logging_data) {
-        row = "" + input.runningTime() + "," + weatherbit.temperature() + "," + weatherbit.humidity() + "," + weatherbit.pressure() + "" + weatherbit.altitude()
+        row = "" + input.runningTime() + "," + weatherbit.temperature() + "," + weatherbit.humidity() + "," + weatherbit.pressure()
         serial.writeLine(row)
         log_num += 1
         if (log_num % 2 == 0) {
